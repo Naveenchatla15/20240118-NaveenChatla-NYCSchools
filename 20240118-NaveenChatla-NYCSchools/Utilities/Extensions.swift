@@ -39,51 +39,77 @@ extension UIView {
     }
     
     @IBInspectable var shadowColor: UIColor?{
-            set {
-                guard let uiColor = newValue else { return }
-                layer.shadowColor = uiColor.cgColor
-            }
-            get{
-                guard let color = layer.shadowColor else { return nil }
-                return UIColor(cgColor: color)
-            }
+        set {
+            guard let uiColor = newValue else { return }
+            layer.shadowColor = uiColor.cgColor
         }
-
-        @IBInspectable var shadowOpacity: Float{
-            set {
-                layer.shadowOpacity = newValue
-            }
-            get{
-                return layer.shadowOpacity
-            }
+        get{
+            guard let color = layer.shadowColor else { return nil }
+            return UIColor(cgColor: color)
         }
-
-        @IBInspectable var shadowOffset: CGSize{
-            set {
-                layer.shadowOffset = newValue
-            }
-            get{
-                return layer.shadowOffset
-            }
+    }
+    
+    @IBInspectable var shadowOpacity: Float{
+        set {
+            layer.shadowOpacity = newValue
         }
-
-        @IBInspectable var shadowRadius: CGFloat{
-            set {
-                layer.shadowRadius = newValue
-            }
-            get{
-                return layer.shadowRadius
-            }
+        get{
+            return layer.shadowOpacity
         }
+    }
+    
+    @IBInspectable var shadowOffset: CGSize{
+        set {
+            layer.shadowOffset = newValue
+        }
+        get{
+            return layer.shadowOffset
+        }
+    }
+    
+    @IBInspectable var shadowRadius: CGFloat{
+        set {
+            layer.shadowRadius = newValue
+        }
+        get{
+            return layer.shadowRadius
+        }
+    }
     func dropShadow(scale: Bool = true) {
-            layer.masksToBounds = false
-            layer.shadowColor = UIColor.systemIndigo.cgColor
-            layer.shadowOpacity = 2
-            layer.shadowOffset = .zero
-            layer.shadowRadius = 3
-            layer.shouldRasterize = true
-            layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.systemIndigo.cgColor
+        layer.shadowOpacity = 2
+        layer.shadowOffset = .zero
+        layer.shadowRadius = 3
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+}
+
+@IBDesignable class PaddingLabel: UILabel {
+    
+    @IBInspectable var topInset: CGFloat = 5.0
+    @IBInspectable var bottomInset: CGFloat = 5.0
+    @IBInspectable var leftInset: CGFloat = 7.0
+    @IBInspectable var rightInset: CGFloat = 7.0
+    
+    override func drawText(in rect: CGRect) {
+        let insets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
+        super.drawText(in: rect.inset(by: insets))
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize(width: size.width + leftInset + rightInset,
+                      height: size.height + topInset + bottomInset)
+    }
+    
+    override var bounds: CGRect {
+        didSet {
+            // ensures this works within stack views if multi-line
+            preferredMaxLayoutWidth = bounds.width - (leftInset + rightInset)
         }
+    }
 }
 
 extension NSObject {
@@ -117,5 +143,5 @@ extension NSObject {
         }
     }
     
-   
+    
 }

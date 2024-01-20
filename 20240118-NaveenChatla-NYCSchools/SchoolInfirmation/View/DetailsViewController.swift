@@ -11,6 +11,7 @@ class DetailsViewController: UIViewController {
     
     var informationAry : [InformationResponseModel] = []
     var dbnUniqueNo = ""
+    var schoolName = ""
     private var informationVM = InformationViewModel()
 
 //MARK: - OutLets
@@ -67,6 +68,7 @@ class DetailsViewController: UIViewController {
             }
             else
             {
+                schoolNameLbl.text = schoolName
                 showToast(message: "No Infirmation Found")
             }
         }

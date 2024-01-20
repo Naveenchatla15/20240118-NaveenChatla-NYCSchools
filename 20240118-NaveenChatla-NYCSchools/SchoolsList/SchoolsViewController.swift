@@ -7,21 +7,15 @@
 
 import UIKit
 
-protocol searchDataHandle {
-    
-    func injectDataWithSearch(isSearch: Bool, modelArray: [NYCSchoolResponseModel])
-}
-
 class SchoolsViewController: UIViewController {
     
     var schoolVM = NYCSchoolViewModel()
-    
-    @IBOutlet weak var schoolsListTableView : UITableView!
-    @IBOutlet weak var searchTF : UITextField!
-    
     var searchedArray : [NYCSchoolResponseModel] = []
     var isSerching = false
-    var delegate : searchDataHandle? = nil
+    
+//MARK: - Outlets
+    @IBOutlet weak var schoolsListTableView : UITableView!
+    @IBOutlet weak var searchTF : UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +92,7 @@ extension SchoolsViewController : UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailsVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
         detailsVC.dbnUniqueNo = searchedArray[indexPath.row].dbn ?? ""
+        detailsVC.schoolName = searchedArray[indexPath.row].school_name ?? ""
         self.navigationController?.pushViewController(detailsVC, animated: true)
     }
 }
