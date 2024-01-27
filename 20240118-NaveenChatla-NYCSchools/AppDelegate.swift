@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManager
+import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -34,4 +35,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
 

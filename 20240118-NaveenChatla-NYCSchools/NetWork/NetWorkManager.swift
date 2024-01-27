@@ -65,7 +65,6 @@ class NetWorkManager : NSObject {
             completionHandler(.failure(.decoding(error)))
         }
     }
-    
 }
 
 

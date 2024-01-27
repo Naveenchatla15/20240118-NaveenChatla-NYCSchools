@@ -6,24 +6,27 @@
 //
 
 import UIKit
-
+import CoreData
 class SchoolsViewController: UIViewController {
     
+    var managedContext : NSManagedObjectContext!
     var schoolVM = NYCSchoolViewModel()
     var searchedArray : [NYCSchoolResponseModel] = []
     var isSerching = false
+    var pageCount = 3
     
 //MARK: - Outlets
     @IBOutlet weak var schoolsListTableView : UITableView!
     @IBOutlet weak var searchTF : UITextField!
-    
+    @IBOutlet weak var preBtn : UIButton!
+    @IBOutlet weak var nextBtn : UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchTF.delegate = self
         setUpTableView()
         getNYCSchools()
     }
-    
+
     //MARK: - GetSchools API Call
     func getNYCSchools()
     {
@@ -50,10 +53,27 @@ class SchoolsViewController: UIViewController {
                 print("loading")
             case .loaded:
                 print("loaded")
-                searchedArray = schoolVM.nycHighSchoolsList
-                DispatchQueue.main.async {
-                    self.schoolsListTableView.reloadData()
+//                searchedArray = schoolVM.nycHighSchoolsList
+//                var i = 0
+                for recored in schoolVM.nycHighSchoolsList
+                {
+//                    i += i
+                    searchedArray.append(recored)
+                    
+                    if searchedArray.count == 3
+                    {
+                        DispatchQueue.main.async {
+                            self.schoolsListTableView.reloadData()
+                        }
+                        return
+                    }
+//                    if i == 3
+//                    {
+//                        i = 0
+//                       break
+//                    }
                 }
+                
             case .error(let error):
                 print(error as Any)
             }
@@ -95,8 +115,44 @@ extension SchoolsViewController : UITableViewDelegate, UITableViewDataSource
         detailsVC.schoolName = searchedArray[indexPath.row].school_name ?? ""
         self.navigationController?.pushViewController(detailsVC, animated: true)
     }
+    
+    
+    
 }
 
+
+extension SchoolsViewController
+{
+    @IBAction func preBtnAction()
+    {
+        
+        
+    }
+    
+    @IBAction func nextBtnAction()
+    {
+        print(searchedArray.count)
+
+        for recored in schoolVM.nycHighSchoolsList
+        {
+            for dbn in searchedArray
+            {
+                if dbn.dbn != recored.dbn
+                {
+
+                    searchedArray.append(recored)
+                    
+                }
+            }
+        }
+        print(searchedArray.count)
+        DispatchQueue.main.async {
+            self.schoolsListTableView.reloadData()
+        }
+        
+        
+    }
+}
 
 
 

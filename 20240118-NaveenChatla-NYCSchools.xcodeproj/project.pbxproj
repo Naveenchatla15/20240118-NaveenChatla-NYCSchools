@@ -30,6 +30,9 @@
 		043D57A52B59A6BE007F26E9 /* InformationResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D57A42B59A6BE007F26E9 /* InformationResponseModel.swift */; };
 		043D57A72B59B114007F26E9 /* ErrorsCatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D57A62B59B114007F26E9 /* ErrorsCatch.swift */; };
 		045B5D462B5BEDE300CEA453 /* SchoolsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B5D452B5BEDE300CEA453 /* SchoolsViewController+Extension.swift */; };
+		04B7D1D12B5ECA58004D79EA /* CoreDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04B7D1CF2B5ECA58004D79EA /* CoreDataBase.xcdatamodeld */; };
+		04B7D1D42B5ECBBE004D79EA /* CoreDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7D1D32B5ECBBE004D79EA /* CoreDataBase.swift */; };
+		04B7D1D62B5ECDA4004D79EA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7D1D52B5ECDA4004D79EA /* User.swift */; };
 		33DB3AFFAAE230D3051EC55A /* Pods_20240118_NaveenChatla_NYCSchools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DA5FA4CE496690182ACE69 /* Pods_20240118_NaveenChatla_NYCSchools.framework */; };
 		63F9914DEF3AA22F17A2A1E6 /* Pods_20240118_NaveenChatla_NYCSchoolsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D15D7C27DAE3E94D30DD80E /* Pods_20240118_NaveenChatla_NYCSchoolsTests.framework */; };
 		DEA855A1AE0103CFF3D7A2E2 /* Pods_20240118_NaveenChatla_NYCSchools_20240118_NaveenChatla_NYCSchoolsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12077DD51B590627338CA5C4 /* Pods_20240118_NaveenChatla_NYCSchools_20240118_NaveenChatla_NYCSchoolsUITests.framework */; };
@@ -79,6 +82,9 @@
 		043D57A42B59A6BE007F26E9 /* InformationResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationResponseModel.swift; sourceTree = "<group>"; };
 		043D57A62B59B114007F26E9 /* ErrorsCatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsCatch.swift; sourceTree = "<group>"; };
 		045B5D452B5BEDE300CEA453 /* SchoolsViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SchoolsViewController+Extension.swift"; sourceTree = "<group>"; };
+		04B7D1D02B5ECA58004D79EA /* CoreDataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataBase.xcdatamodel; sourceTree = "<group>"; };
+		04B7D1D32B5ECBBE004D79EA /* CoreDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataBase.swift; sourceTree = "<group>"; };
+		04B7D1D52B5ECDA4004D79EA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		12077DD51B590627338CA5C4 /* Pods_20240118_NaveenChatla_NYCSchools_20240118_NaveenChatla_NYCSchoolsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_20240118_NaveenChatla_NYCSchools_20240118_NaveenChatla_NYCSchoolsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12DA5FA4CE496690182ACE69 /* Pods_20240118_NaveenChatla_NYCSchools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_20240118_NaveenChatla_NYCSchools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D15D7C27DAE3E94D30DD80E /* Pods_20240118_NaveenChatla_NYCSchoolsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_20240118_NaveenChatla_NYCSchoolsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +158,7 @@
 				043D57882B5983E2007F26E9 /* SchoolInfirmation */,
 				043D57542B59715E007F26E9 /* Main.storyboard */,
 				043D57572B59715F007F26E9 /* Assets.xcassets */,
+				04B7D1D22B5ECA5F004D79EA /* Core Data Base */,
 				043D57592B59715F007F26E9 /* LaunchScreen.storyboard */,
 				043D575C2B59715F007F26E9 /* Info.plist */,
 			);
@@ -271,6 +278,16 @@
 				043D57A22B59A622007F26E9 /* InformationViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		04B7D1D22B5ECA5F004D79EA /* Core Data Base */ = {
+			isa = PBXGroup;
+			children = (
+				04B7D1CF2B5ECA58004D79EA /* CoreDataBase.xcdatamodeld */,
+				04B7D1D32B5ECBBE004D79EA /* CoreDataBase.swift */,
+				04B7D1D52B5ECDA4004D79EA /* User.swift */,
+			);
+			path = "Core Data Base";
 			sourceTree = "<group>";
 		};
 		65698F6A46D1E52041E9D460 /* Pods */ = {
@@ -548,6 +565,7 @@
 				043D57972B598C17007F26E9 /* NYCSchoolResponseModel.swift in Sources */,
 				043D57532B59715E007F26E9 /* SchoolsViewController.swift in Sources */,
 				043D57832B597F09007F26E9 /* GlobalFunctions.swift in Sources */,
+				04B7D1D42B5ECBBE004D79EA /* CoreDataBase.swift in Sources */,
 				043D574F2B59715E007F26E9 /* AppDelegate.swift in Sources */,
 				043D57512B59715E007F26E9 /* SceneDelegate.swift in Sources */,
 				043D577F2B597851007F26E9 /* DetailsViewController.swift in Sources */,
@@ -555,8 +573,10 @@
 				043D579E2B598CC6007F26E9 /* NYCSchoolViewModel.swift in Sources */,
 				043D57A52B59A6BE007F26E9 /* InformationResponseModel.swift in Sources */,
 				043D579A2B598C69007F26E9 /* SchoolNameTableViewCell.swift in Sources */,
+				04B7D1D62B5ECDA4004D79EA /* User.swift in Sources */,
 				045B5D462B5BEDE300CEA453 /* SchoolsViewController+Extension.swift in Sources */,
 				043D57902B59881C007F26E9 /* Constants.swift in Sources */,
+				04B7D1D12B5ECA58004D79EA /* CoreDataBase.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,6 +965,19 @@
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		04B7D1CF2B5ECA58004D79EA /* CoreDataBase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				04B7D1D02B5ECA58004D79EA /* CoreDataBase.xcdatamodel */,
+			);
+			currentVersion = 04B7D1D02B5ECA58004D79EA /* CoreDataBase.xcdatamodel */;
+			path = CoreDataBase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 043D57432B59715E007F26E9 /* Project object */;
 }
