@@ -32,7 +32,8 @@ class SchoolsViewController: UIViewController {
     {
         schoolVM.fetchNYCSchools()
         schoolsObserver()
-        
+        nextBtn.isEnabled = false
+        nextBtn.isEnabled = false
     }
     
     //MARK: - Setup TableView
@@ -54,21 +55,19 @@ class SchoolsViewController: UIViewController {
             case .loaded:
                 print("loaded")
 //                searchedArray = schoolVM.nycHighSchoolsList
-//                var i = 0
+                
                 for recored in schoolVM.nycHighSchoolsList
                 {
                     searchedArray.append(recored)
-                    
                     if searchedArray.count == 3
                     {
+                        nextBtn.isEnabled = true
                         DispatchQueue.main.async {
                             self.schoolsListTableView.reloadData()
                         }
                         return
                     }
-
                 }
-                
             case .error(let error):
                 print(error as Any)
             }
@@ -126,31 +125,31 @@ extension SchoolsViewController
     
     @IBAction func nextBtnAction()
     {
-        print(searchedArray.count)
-        
         var i = 0
-        for recored in schoolVM.nycHighSchoolsList
+        for school in schoolVM.nycHighSchoolsList
         {
-            for dbn in searchedArray
-            {
-                if dbn.dbn != recored.dbn
-                {
-                    i += 1
-                    searchedArray.append(recored)
-                    if i >= 3 {
-                        break
-                    }
-                }
+            
+            if !searchedArray.contains(where: { $0.dbn == school.dbn }) {
+                searchedArray.append(school)
+                i += 1
             }
             if i >= 3 {
                 break
             }
         }
+        
         print(searchedArray.count)
+        
         DispatchQueue.main.async {
             self.schoolsListTableView.reloadData()
+            let indexPath = IndexPath(row: self.searchedArray.count - 1 , section: 0)
+            self.schoolsListTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
         
+        if schoolVM.nycHighSchoolsList.count == searchedArray.count
+        {
+            nextBtn.isEnabled = false
+        }
         
     }
 }
