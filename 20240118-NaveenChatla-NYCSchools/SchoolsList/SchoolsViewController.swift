@@ -57,7 +57,6 @@ class SchoolsViewController: UIViewController {
 //                var i = 0
                 for recored in schoolVM.nycHighSchoolsList
                 {
-//                    i += i
                     searchedArray.append(recored)
                     
                     if searchedArray.count == 3
@@ -67,11 +66,7 @@ class SchoolsViewController: UIViewController {
                         }
                         return
                     }
-//                    if i == 3
-//                    {
-//                        i = 0
-//                       break
-//                    }
+
                 }
                 
             case .error(let error):
@@ -132,17 +127,23 @@ extension SchoolsViewController
     @IBAction func nextBtnAction()
     {
         print(searchedArray.count)
-
+        
+        var i = 0
         for recored in schoolVM.nycHighSchoolsList
         {
             for dbn in searchedArray
             {
                 if dbn.dbn != recored.dbn
                 {
-
+                    i += 1
                     searchedArray.append(recored)
-                    
+                    if i >= 3 {
+                        break
+                    }
                 }
+            }
+            if i >= 3 {
+                break
             }
         }
         print(searchedArray.count)
